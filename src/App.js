@@ -1,4 +1,5 @@
 import logo from './assets/img/pizza-logo.svg';
+import Button from './Button';
 
 function App() {
   return (
@@ -49,6 +50,8 @@ function App() {
           </div>
         </div>
       </div>
+      <Button outline>Let her go</Button>
+      <Button>Let her go</Button>
       <div className="content">
         <div className="container">
           <div className="content__top">
