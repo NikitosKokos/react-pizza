@@ -10,6 +10,12 @@
 
     svg {
       margin-right: 8px;
+      transition: all .3s ease-in-out;
+      transform: rotate(180deg);
+
+      &.active{
+        transform: rotate(0deg);
+      }
     }
 
     b {
@@ -33,12 +39,26 @@
     overflow: hidden;
     padding: 10px 0;
     width: 160px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(15px);
+    transition: all $duration ease-in-out;
+
+    &.active{
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
 
     ul {
       overflow: hidden;
       li {
         padding: 12px 20px;
         cursor: pointer;
+        font-weight: 500;
+        transition: all .3s ease-in-out;
 
         &.active,
         &:hover {
@@ -46,7 +66,6 @@
         }
 
         &.active {
-          font-weight: bold;
           color: $orange;
         }
       }

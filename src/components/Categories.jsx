@@ -11,7 +11,7 @@ const Categories = ({ items }) => {
     return (
         <div className="categories">
             <ul>
-            <li onClick={() => onSelectItem(null)} className={activeItem === null ? 'active': ''}>Все</li>
+            <li onClick={() => onSelectItem(null)} className={classNames({'active': activeItem === null})}>Все</li>
             { items && items.map((name, i) => (
             <li 
                 className={classNames({'active': activeItem === i})}
