@@ -1,20 +1,33 @@
 @import '../variables';
 
 .header {
-  border-bottom: 1px solid $gray-line;
-  padding: 40px 0;
 
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @include adaptiv-value('padding-top', 40, 20, 1);
+    @include adaptiv-value('padding-bottom', 40, 20, 1);
+    border-bottom: 1px solid $gray-line;
   }
 
   &__logo {
     display: flex;
+    align-items: center;
+    padding: 0px 10px 0px 0px;
 
     img {
       margin-right: 15px;
+      width: 38px;
+
+      @media (max-width: $md3+px){
+        margin-right: 10px;
+      }
+
+      @media (max-width: $md4+px){
+         width: 30px;
+         margin-right: 6px;
+      }
     }
 
     h1 {
@@ -23,10 +36,25 @@
       letter-spacing: 1%;
       text-transform: uppercase;
       font-weight: 800;
+
+      @media (max-width: $md3+px){
+        font-size: 18px;
+      }
+      @media (max-width: $md4+px){
+         font-size: 16px;
+      }
     }
 
     p {
       color: #7b7b7b;
+
+      @media (max-width: $md3+px){
+        font-size: 12px;
+     }
+
+     @media (max-width: $md4+px){
+        display: none;
+     }
     }
   }
 }
