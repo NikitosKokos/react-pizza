@@ -13,6 +13,7 @@ const SortPopup = ({ items }) => {
 
     const onSelectItem = (i) => {
         setActiveItem(i);
+        setVisiblePopup(false);
     }
 
     const handleOutsideClick = (e) => {
