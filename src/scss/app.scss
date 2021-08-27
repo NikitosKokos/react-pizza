@@ -18,7 +18,8 @@ body {
 }
 
 .content {
-  padding: 40px 0;
+  @include adaptiv-value('padding-top', 40, 20, 1);
+  @include adaptiv-value('padding-bottom', 40, 20, 1);
 
   &__title {
     margin: 35px 0;

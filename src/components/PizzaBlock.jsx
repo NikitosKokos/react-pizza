@@ -7,6 +7,7 @@ const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
     const availableSizes = [26, 30, 40];
     const [activeType, setActiveType] = React.useState(types[0]);
     const [activeSize, setActiveSize] = React.useState(sizes[0]);
+    const [currentPrice, setCurrentPrice] = React.useState(price[0]);
     const typeLineRef = React.useRef();
     const sizeLineRef = React.useRef();
 
@@ -18,6 +19,7 @@ const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
     const onSelectSize = (i) => {
         sizeLineRef.current.style.transform = `translateX(${100 * i}%)`;
         setActiveSize(i);
+        setCurrentPrice(price[sizes.indexOf(availableSizes[i])]);
     };
 
     React.useEffect(() => {
@@ -56,7 +58,6 @@ const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
                             key={size}
                             onClick={() => onSelectSize(i)}
                             className={classNames({
-                                active: activeSize === i,
                                 disabled: !sizes.includes(size),
                             })}>
                             {size} см.
@@ -65,7 +66,7 @@ const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
                 </ul>
             </div>
             <div className="pizza-block__bottom">
-                <div className="pizza-block__price">от {price} ₽</div>
+                <div className="pizza-block__price">от {currentPrice} ₽</div>
                 <div className="button button--outline button--add">
                     <svg
                         width="12"
@@ -89,7 +90,7 @@ const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
 PizzaBlock.propTypes = {
     name: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    price: PropTypes.arrayOf(PropTypes.number).isRequired,
     types: PropTypes.arrayOf(PropTypes.number).isRequired,
     sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
 };

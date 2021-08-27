@@ -46,9 +46,6 @@
         position: relative;
         z-index: 2;
 
-        &.active {
-          cursor: auto;
-        }
         &.disabled {
           opacity: .5;
           pointer-events: none;

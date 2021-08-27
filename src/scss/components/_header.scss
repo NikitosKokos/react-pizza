@@ -6,8 +6,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @include adaptiv-value('padding-top', 40, 20, 1);
-    @include adaptiv-value('padding-bottom', 40, 20, 1);
+    @include adaptiv-value('padding-top', 40, 15, 1);
+    @include adaptiv-value('padding-bottom', 40, 15, 1);
     border-bottom: 1px solid $gray-line;
   }
 
