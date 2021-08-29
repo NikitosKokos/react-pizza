@@ -27,7 +27,7 @@ body {
 
   &__items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     row-gap: 65px;
     column-gap: 35px;
   }
