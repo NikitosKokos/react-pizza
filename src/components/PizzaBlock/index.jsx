@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from '../Button';
 
-const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
+const PizzaBlock = ({ id, name, imageUrl, price, types, sizes, addedCount, onClickAddPizza }) => {
     const availableTypes = ['тонкое', 'традиционное'];
     const availableSizes = [26, 30, 40];
     const [activeType, setActiveType] = React.useState(types[0]);
@@ -11,6 +12,18 @@ const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
     const typeLineRef = React.useRef();
     const sizeLineRef = React.useRef();
 
+    const onAddPizza = () => {
+        const obj = {
+            id,
+            name,
+            imageUrl,
+            price: currentPrice,
+            type: activeType,
+            size: activeSize,
+        };
+        onClickAddPizza(obj);
+    }
+
     const onSelectType = (i) => {
         typeLineRef.current.style.transform = `translateX(${100 * i}%)`;
         setActiveType(i);
@@ -18,7 +31,7 @@ const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
 
     const onSelectSize = (i) => {
         sizeLineRef.current.style.transform = `translateX(${100 * i}%)`;
-        setActiveSize(i);
+        setActiveSize(availableSizes[i]);
         setCurrentPrice(price[sizes.indexOf(availableSizes[i])]);
     };
 
@@ -29,7 +42,9 @@ const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
 
         const sizesLineWidth = 100 / availableSizes.length;
         sizeLineRef.current.style.width = `${sizesLineWidth}%`;
-        sizeLineRef.current.style.transform = `translateX(${100 * availableSizes.indexOf(activeSize)}%)`;
+        sizeLineRef.current.style.transform = `translateX(${
+            100 * availableSizes.indexOf(activeSize)
+        }%)`;
     }, []);
 
     return (
@@ -44,7 +59,6 @@ const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
                             key={type}
                             onClick={() => onSelectType(i)}
                             className={classNames({
-                                active: activeType === i,
                                 disabled: !types.includes(i),
                             })}>
                             {type}
@@ -67,7 +81,7 @@ const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
             </div>
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">от {currentPrice} ₽</div>
-                <div className="button button--outline button--add">
+                <Button onClick={onAddPizza} className="button--add" outline>
                     <svg
                         width="12"
                         height="12"
@@ -80,8 +94,8 @@ const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>2</i>
-                </div>
+                    {!!addedCount && <i>{addedCount}</i>}
+                </Button>
             </div>
         </div>
     );
@@ -93,6 +107,8 @@ PizzaBlock.propTypes = {
     price: PropTypes.arrayOf(PropTypes.number).isRequired,
     types: PropTypes.arrayOf(PropTypes.number).isRequired,
     sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
+    addedCount: PropTypes.number,
+    onAddPizza: PropTypes.func,
 };
 
 PizzaBlock.defaultProps = {

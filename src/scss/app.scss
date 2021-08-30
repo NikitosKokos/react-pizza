@@ -45,12 +45,12 @@ body {
 }
 
 .container {
-  @include adaptiv-value('margin-right', 70, 10, 1);
-  @include adaptiv-value('margin-left', 70, 10, 1);
+  @include adaptiv-value('padding-right', 70, 10, 1);
+  @include adaptiv-value('padding-left', 70, 10, 1);
 
   &--cart {
     max-width: 820px;
-    margin: 90px auto;
+    margin: 0 auto;
     .content__title {
       margin: 0;
     }
@@ -62,19 +62,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: $md4+px){
+       flex-direction: column;
+       align-items: flex-start;
+    }
   }
 
   .content__title {
     display: flex;
     align-items: center;
-    font-size: 32px;
+    @include adaptiv-value('font-size', 32, 26, 1);
+    margin: 0px 0px 10px 0px;
 
     svg {
       position: relative;
       top: -2px;
-      width: 30px;
-      height: 30px;
+      @include adaptiv-value('width', 30, 25, 1);
+      @include adaptiv-value('height', 30, 25, 1);
       margin-right: 10px;
+
       path {
         stroke: $black;
         stroke-width: 1.9;
@@ -113,18 +120,32 @@ body {
     }
   }
 
+  .content__items{
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+  }
+
   &__item {
     display: flex;
     width: 100%;
     border-top: 1px solid $gray-line;
-    padding-top: 30px;
-    margin-top: 30px;
+    @include adaptiv-value('padding-top', 30, 20, 1);
+    @include adaptiv-value('margin-top', 30, 20, 1);
+
+    @media (max-width: $md2+px){
+       flex-wrap: wrap;
+    }
 
     &-img {
       display: flex;
       align-items: center;
-      margin-right: 15px;
-      width: 10%;
+      @include adaptiv-value('margin-right', 15, 10, 1);
+      flex: 0 0 80px;
+
+      @media (max-width: $md2+px){
+         margin-bottom: 15px;
+      }
 
       img {
         width: 80px;
@@ -136,17 +157,22 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 40%;
+      flex: 1 1 auto;
+
+      @media (max-width: $md2+px){
+         flex: 1 1 calc(100% - 95px);
+         margin-bottom: 15px;
+      }
 
       h3 {
         font-weight: bold;
-        font-size: 22px;
         line-height: 27px;
         letter-spacing: 0.01em;
+        @include adaptiv-value('font-size', 22, 20, 1);
       }
 
       p {
-        font-size: 18px;
+        @include adaptiv-value('font-size', 18, 16, 1);
         color: #8d8d8d;
       }
     }
@@ -154,8 +180,7 @@ body {
     &-count {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      width: 13%;
+      flex: 0 0 auto;
 
       &-minus {
         svg {
@@ -167,6 +192,7 @@ body {
 
       b {
         font-size: 22px;
+        margin: 0 10px;
       }
     }
 
@@ -174,7 +200,11 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 33%;
+      flex: 1 1 25%;
+      
+      @media (max-width: $md2+px){
+         flex: 1 1 auto;
+      }
 
       b {
         font-weight: bold;
@@ -187,7 +217,7 @@ body {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      width: 4%;
+      flex: 0 0 auto;
 
       .button {
         border-color: darken($color: $gray-line, $amount: 10);
@@ -223,8 +253,12 @@ body {
       display: flex;
       justify-content: space-between;
 
+      @media (max-width: $md4+px){
+         flex-direction: column;
+      }
+
       span {
-        font-size: 22px;
+        @include adaptiv-value('font-size', 22, 20, 1);
 
         &:last-of-type {
           b {
@@ -239,11 +273,25 @@ body {
       justify-content: space-between;
       margin-top: 40px;
 
+      @media (max-width: $md4+px){
+         flex-direction: column;
+      }
+
       .go-back-btn {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 210px;
+
+        @media (max-width: $md3+px){
+           width: 190px;
+        }
+
+        @media (max-width: $md4+px){
+           width: 100%;
+           margin: 0px 0px 10px 0px;
+           padding: 15px;
+        }
 
         border-color: darken($color: $gray-line, $amount: 10);
 
@@ -276,6 +324,14 @@ body {
         font-weight: 600;
         width: 210px;
         padding: 16px;
+
+        @media (max-width: $md3+px){
+           width: 190px;
+        }
+
+        @media (max-width: $md4+px){
+           width: 100%;
+        }
       }
     }
   }
