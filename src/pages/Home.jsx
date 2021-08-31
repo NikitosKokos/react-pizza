@@ -40,7 +40,7 @@ const Home = React.memo(() => {
         return types.reduce((count, type) => {
             sizes.forEach(size => {
                 if(cartItems[`${id}-${type}-${size}`]){
-                    count += cartItems[`${id}-${type}-${size}`].length;
+                    count += cartItems[`${id}-${type}-${size}`].items.length;
                 };
             });
             return count;

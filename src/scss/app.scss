@@ -338,11 +338,11 @@ body {
 
   &--empty {
     margin: 0 auto;
-    width: 560px;
+    max-width: 560px;
     text-align: center;
 
     h2 {
-      font-size: 32px;
+      @include adaptiv-value('font-size', 32, 28, 1);
       margin-bottom: 10px;
     }
 
@@ -351,6 +351,13 @@ body {
       line-height: 145.4%;
       letter-spacing: 0.01em;
       color: #777777;
+      @include adaptiv-value('font-size', 18, 16, 1);
+
+      @media (max-width: $md4+px){
+         br{
+           display: none;
+         }
+      }
     }
 
     icon {
@@ -360,8 +367,15 @@ body {
 
     img {
       display: block;
-      width: 300px;
-      margin: 45px auto 60px;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      @include adaptiv-value('margin-top', 45, 30, 1);
+      @include adaptiv-value('margin-bottom', 60, 30, 1);
+
+      @media (max-width: $md4+px){
+         max-width: 250px;
+      }
     }
 
     .button--black {
@@ -370,6 +384,10 @@ body {
       margin: 0 auto;
       font-weight: 600;
       font-size: 18px;
+
+      @media (max-width: $md4+px){
+         width: 100%;
+      }
     }
   }
 }
