@@ -112,7 +112,7 @@ const Cart = () => {
                     <div className="content__items">
                         {addedPizzas.map((obj) => (
                             <CartItem
-                                key={obj.id}
+                                key={`${obj.id}-${obj.type}-${obj.size}`}
                                 id={obj.id}
                                 name={obj.name}
                                 imageUrl={obj.imageUrl}

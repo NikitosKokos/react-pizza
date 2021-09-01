@@ -102,6 +102,7 @@ const PizzaBlock = ({ id, name, imageUrl, price, types, sizes, addedCount, onCli
 };
 
 PizzaBlock.propTypes = {
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
     price: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -109,6 +110,7 @@ PizzaBlock.propTypes = {
     sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
     addedCount: PropTypes.number,
     onAddPizza: PropTypes.func,
+    onClickAddPizza: PropTypes.func,
 };
 
 PizzaBlock.defaultProps = {

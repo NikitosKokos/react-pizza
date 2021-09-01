@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const setLoaded = (payload) => ({ type: 'SET_LOADED', payload });
+export const setPizzas = (payload) => ({ type: 'SET_PIZZAS', payload });
 
 export const fetchPizzas = (category, sortBy) => (dispatch) => {
     dispatch(setLoaded(false));
@@ -14,4 +15,3 @@ export const fetchPizzas = (category, sortBy) => (dispatch) => {
             dispatch(setPizzas(data));
         });
 };
-export const setPizzas = (payload) => ({ type: 'SET_PIZZAS', payload });

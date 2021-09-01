@@ -29,7 +29,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     row-gap: 65px;
-    column-gap: 35px;
+    @include adaptiv-value('column-gap', 35, 25, 1);
   }
 
   &__top {
@@ -358,11 +358,6 @@ body {
            display: none;
          }
       }
-    }
-
-    icon {
-      position: relative;
-      top: 2px;
     }
 
     img {

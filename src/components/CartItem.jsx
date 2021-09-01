@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from './Button';
+import PropTypes from 'prop-types';
 
 const CartItem = ({ id, name, type, size, imageUrl, totalPrice, totalCount, onRemove, onPlus, onMinus }) => {
     const types = ['Tонкое', 'Tрадиционное'];
@@ -28,9 +29,10 @@ const CartItem = ({ id, name, type, size, imageUrl, totalPrice, totalCount, onRe
                 </p>
             </div>
             <div className="cart__item-count">
-                <div
+                <Button
                     onClick={handleMinusItem}
-                    className="button button--outline button--circle cart__item-count-minus">
+                    className="button--circle cart__item-count-minus"
+                    outline>
                     <svg
                         width="10"
                         height="10"
@@ -46,11 +48,12 @@ const CartItem = ({ id, name, type, size, imageUrl, totalPrice, totalCount, onRe
                             fill="#EB5A1E"
                         />
                     </svg>
-                </div>
+                </Button>
                 <b>{totalCount}</b>
-                <div
+                <Button
                     onClick={handlePlusItem}
-                    className="button button--outline button--circle cart__item-count-plus">
+                    className="button--circle cart__item-count-plus"
+                    outline>
                     <svg
                         width="10"
                         height="10"
@@ -66,7 +69,7 @@ const CartItem = ({ id, name, type, size, imageUrl, totalPrice, totalCount, onRe
                             fill="#EB5A1E"
                         />
                     </svg>
-                </div>
+                </Button>
             </div>
             <div className="cart__item-price">
                 <b>{totalPrice} ₽</b>
@@ -92,6 +95,20 @@ const CartItem = ({ id, name, type, size, imageUrl, totalPrice, totalCount, onRe
             </div>
         </div>
     );
+};
+
+CartItem.propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    totalPrice: PropTypes.number.isRequired,
+    totalCount: PropTypes.number.isRequired,
+    type: PropTypes.number.isRequired,
+    sizes: PropTypes.number.isRequired,
+    addedCount: PropTypes.number,
+    onRemove: PropTypes.func,
+    onPlus: PropTypes.func,
+    onMinus: PropTypes.func,
 };
 
 export default CartItem;
