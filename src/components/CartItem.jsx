@@ -104,7 +104,7 @@ CartItem.propTypes = {
     totalPrice: PropTypes.number.isRequired,
     totalCount: PropTypes.number.isRequired,
     type: PropTypes.number.isRequired,
-    sizes: PropTypes.number.isRequired,
+    size: PropTypes.number.isRequired,
     addedCount: PropTypes.number,
     onRemove: PropTypes.func,
     onPlus: PropTypes.func,
