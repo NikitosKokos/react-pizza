@@ -1,0 +1,63 @@
+@import '../variables';
+
+
+.popup{
+    width: 400px;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #555;
+    z-index: 10;
+
+    @media (max-width: $md4+px){
+       width: calc(100% - 20px);
+    }
+    
+    &__content{
+        padding: 20px;
+    }
+
+    &__title{
+        font-weight: 500;
+        margin: 0px 0px 10px 0px;
+    }
+
+    &__buttons{
+        display: flex;
+        align-items: center;
+    }
+
+    &__btn{
+        height: 30px;
+        border-radius: 8px;
+        padding: 0 15px;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        transition: all .3s ease-in-out;
+
+        &_open{
+            background: $orange;
+            margin: 0px 10px 0px 0px;
+
+            @media(any-hover: hover){
+                &:hover{
+                    background: darken($orange, 10%);
+                }
+            }
+        }
+        &_close{
+            color: #333;
+            background: $gray-line;
+            @media(any-hover: hover){
+                &:hover{
+                    background: darken($gray-line, 10%);
+                    color: #222;
+                }
+            }
+        }
+    }
+}

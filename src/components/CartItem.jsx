@@ -1,13 +1,24 @@
 import React from 'react'
 import Button from './Button';
 import PropTypes from 'prop-types';
+import Popup from './Popup';
 
 const CartItem = ({ id, name, type, size, imageUrl, totalPrice, totalCount, onRemove, onPlus, onMinus }) => {
+    const [isActivePopup, setIsActivePopup] = React.useState(false);
     const types = ['Tонкое', 'Tрадиционное'];
 
     const handleRemoveClick = () => {
-        onRemove(`${id}-${type}-${size}`);
+        setIsActivePopup(true);
+        
     };
+
+    const onConfirmPopup = () => {
+        onRemove(`${id}-${type}-${size}`);
+    }
+
+    const onClosePopup = () => {
+        setIsActivePopup(false);
+    }
 
     const handlePlusItem = () => {
         onPlus(`${id}-${type}-${size}`);
@@ -19,6 +30,13 @@ const CartItem = ({ id, name, type, size, imageUrl, totalPrice, totalCount, onRe
 
     return (
         <div className="cart__item">
+            {isActivePopup && (
+                <Popup
+                    title="Вы действительно хотите удалить?"
+                    callBack={onConfirmPopup}
+                    onClose={onClosePopup}
+                />
+            )}
             <div className="cart__item-img">
                 <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
             </div>

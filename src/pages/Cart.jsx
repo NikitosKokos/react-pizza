@@ -4,21 +4,31 @@ import { Button, CartItem } from '../components';
 import { clearCart, removeCartItem, plusCartItem, minusCartItem } from '../redux/actions/cart';
 import cartEmptyImage from '../assets/img/empty-cart.png';
 import { Link } from 'react-router-dom';
+import Popup from '../components/Popup';
 
 const Cart = () => {
     const dispatch = useDispatch();
     const { items, totalPrice, totalCount } = useSelector(({ cart }) => cart);
+    const [isActivePopup, setIsActivePopup] = React.useState(false);
 
     const addedPizzas = Object.keys(items).map(key => {
         return items[key].items[0];
     })
 
     const onClearCart = () => {
-        if(window.confirm('Вы действительно хотите очистить корзину?')) dispatch(clearCart());
+        setIsActivePopup(true);
     }
 
     const onRemoveItem = (id) => {
-        if(window.confirm('Вы действительно хотите удалить?')) dispatch(removeCartItem(id));
+        dispatch(removeCartItem(id));
+    }
+
+    const onConfirmPopup = () => {
+        dispatch(clearCart());
+    }
+
+    const onClosePopup = () => {
+        setIsActivePopup(false);
     }
 
     const onPlusItem = (id) => {
@@ -35,6 +45,13 @@ const Cart = () => {
 
     return (
         <div className="container container--cart">
+            {isActivePopup && (
+                <Popup
+                    title={'Вы действительно хотите очистить корзину?'}
+                    callBack={onConfirmPopup}
+                    onClose={onClosePopup}
+                />
+            )}
             {totalCount ? (
                 <div className="cart">
                     <div className="cart__top">
@@ -164,7 +181,8 @@ const Cart = () => {
                 <div className="cart cart--empty">
                     <h2>Корзина пустая 😕</h2>
                     <p>
-                        Вероятней всего, вы не заказывали ещё пиццу. <br /> Для того, чтобы заказать пиццу, перейди на главную страницу.
+                        Вероятней всего, вы не заказывали ещё пиццу. <br /> Для того, чтобы заказать
+                        пиццу, перейди на главную страницу.
                     </p>
                     <img src={cartEmptyImage} alt="Empty cart" />
                     <Link to="/" className="button button--black">
